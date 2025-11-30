@@ -10,35 +10,41 @@
             padding: 0;
             height: 100%;
             width: 100%;
-            display: flex;
+            display: flex; /* Centers the content */
             justify-content: center;
             align-items: center;
             background-color: #000; /* Black bars will appear here */
             overflow: hidden;
         }
         
-        /* The container that holds the aspect ratio */
+        /* The container that holds the aspect ratio and fills the viewport */
         .aspect-ratio-container {
+            /* These dimensions are the key to maximizing the space */
             width: 100vw;
-            max-width: calc(100vh * (4/3)); /* Max width to maintain 4:3 */
             height: 100vh;
-            max-height: calc(100vw * (3/4)); /* Max height to maintain 4:3 */
-            position: relative;
+            
+            /* Add this line to handle the scaling while maintaining aspect ratio */
+            object-fit: contain; 
+
+            /* Remove max-width/max-height constraints used in the previous complex hack */
         }
 
-        /* The Ruffle player fits perfectly inside the aspect ratio container */
+        /* The Ruffle player fits perfectly inside the container */
         #container {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+        }
+
+        /* Ensure the canvas Ruffle creates inherits the object-fit rule */
+        #container canvas {
+             width: 100%;
+             height: 100%;
+             object-fit: contain;
         }
 
     </style>
 </head>
 <body>
-    <!-- Use the new aspect ratio container -->
     <div class="aspect-ratio-container">
         <div id="container"></div>
     </div>
@@ -47,8 +53,8 @@
         window.RufflePlayer = window.RufflePlayer || {};
         window.RufflePlayer.config = {
             "autoplay": "on",
-            "splashScreen": false,
-            "unmuteOverlay": "shown",
+            "splashScreen": true,
+            "unmuteOverlay": "hidden",
             "scale": "showAll", // Let Ruffle scale within the container
             "wmode": "opaque"
         };
@@ -64,8 +70,12 @@
             document.getElementById("container").appendChild(player);
             
             player.load("theimpossiblequiz.swf"); // Use your SWF filename
+            
+            // Re-apply styles to the actual player element as a fallback
+            player.style.width = "100%";
+            player.style.height = "100%";
+            player.style.objectFit = "contain";
         });
     </script>
 </body>
 </html>
-
