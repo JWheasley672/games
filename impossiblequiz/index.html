@@ -52,6 +52,8 @@
         window.addEventListener("load", (event) => {
             const ruffle = window.RufflePlayer.newest();
             const player = ruffle.createPlayer();
+            player.width = 400;
+            player.height = 300;
             document.getElementById("container").appendChild(player);
             
             // !! REPLACE 'your-animation.swf' with your actual SWF filename !!
@@ -64,5 +66,6 @@
     </script>
 </body>
 </html>
+
 
 
