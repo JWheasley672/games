@@ -3,55 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruffle Responsive Final</title>
+    <title>The Impossible Quiz</title>
     <style>
+        /* The body acts as the main centering container */
         body {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            display: flex; /* Use Flexbox for easy centering */
+            justify-content: center; /* Centers horizontally */
+            align-items: center; /* Centers vertically */
+            height: 100vh; /* Ensures the body takes up the full screen height */
             background-color: #f0f0f0;
+            overflow: hidden; /* Prevents scrolling if the game overfills on small screens */
         }
 
         .swf-container {
-            /* This is the responsive container */
-            max-width: 800px;
+            /* This container manages the max size and responsiveness */
+            max-width: 800px; /* Maximum width the game will reach */
             width: 100%;
-            border: none;
-            outline: none;
-            /* We handle the aspect ratio within the container's *actual* height management */
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
         }
-
-        /* Target the element Ruffle generates (canvas) and make it fill its parent */
+        
+        /* The canvas Ruffle generates needs to adapt to its parent container */
         .swf-container canvas {
             width: 100% !important;
-            height: auto !important; /* Auto height maintains aspect ratio based on width */
+            height: auto !important; /* Auto height maintains the 4:3 aspect ratio */
             display: block;
             border: none !important;
             outline: none !important;
             margin: 0 auto;
         }
     </style>
-
-        <script>
+    
+    <!-- Ruffle Configuration: Autoplay and hide any buttons -->
+    <script>
         window.RufflePlayer = window.RufflePlayer || {};
         window.RufflePlayer.config = {
-            "autoplay": "on",         /* Forces autoplay regardless of browser rules */
-            "unmuteOverlay": "hidden" /* Hides the "Click to Unmute" button that appears if autoplay is muted */
+            "autoplay": "on",
+            "unmuteOverlay": "hidden"
         };
     </script>
 </head>
 <body>
 
     <div class="swf-container">
-        <!-- CRITICAL: Keep the pixel dimensions here (400x300)! Ruffle reads these first -->
+        <!-- CRITICAL: Keep original pixel dimensions here for Ruffle to initialize correctly -->
         <embed src="theimpossiblequiz.swf" width="400" height="300" type="application/x-shockwave-flash" frameborder="0"></embed>
     </div>
 
-    <!-- Load Ruffle -->
+    <!-- Load the Ruffle script AFTER the config block -->
     <script src="../ruffle/ruffle.js"></script>
 
 </body>
 </html>
-
