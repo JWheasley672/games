@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Impossible Quiz</title>
+    <title>Ruffle Responsive Fix</title>
     <style>
         body {
             margin: 0;
@@ -17,19 +17,18 @@
         }
 
         .swf-container {
-            /* This defines the maximum space the game can take up on large screens */
-            max-width: 800px; 
+            max-width: 800px; /* Max size on large screens */
             width: 100%;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             position: relative;
-            /* 4:3 Aspect Ratio Hack: 300 / 400 = 0.75 or 75% */
-            padding-top: 75%; 
+            padding-top: 75%; /* Maintains 4:3 aspect ratio (300/400 = 0.75) */
             height: 0;
             overflow: hidden;
         }
 
-        /* This makes the actual embed element fill the responsive container */
-        .swf-container embed {
+        /* This is the key fix: We target the 'canvas' element Ruffle creates */
+        /* and force it to fill the responsive container. */
+        .swf-container canvas {
             position: absolute;
             top: 0;
             left: 0;
@@ -42,7 +41,7 @@
 <body>
 
     <div class="swf-container">
-        <!-- The width and height attributes here act as a fallback/default size -->
+        <!-- Keep the pixel dimensions here! Ruffle reads these first. -->
         <embed src="theimpossiblequiz.swf" width="400" height="300" type="application/x-shockwave-flash"></embed>
     </div>
 
