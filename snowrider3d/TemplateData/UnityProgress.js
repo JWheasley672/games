@@ -36,7 +36,7 @@ function UnityProgress(gameInstance, progress) {
     }
     else
     {
-        gameInstance.textProgress.innerHTML = 'Downloading resources... ' + Math.floor(progress * 100) + '%' + ' <img src="' + rootPath + '/gears.gif" class="spinner" />';
+        gameInstance.textProgress.innerHTML = 'Downloading resources. Please wait... ' + Math.floor(progress * 100) + '%' + ' <img src="' + rootPath + '/gears.gif" class="spinner" />';
     }
 
     /*
