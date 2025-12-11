@@ -31,17 +31,17 @@ function UnityProgress(gameInstance, progress) {
 
     if(progress>= 0.9 && progress<1)
     {
-        gameInstance.textProgress.innerHTML = '100% - Running, Wait..' +' <img src="' + rootPath + '/gears.gif" class="spinner" />';
+        gameInstance.textProgress.innerHTML = 'Please wait...' +' <img src="' + rootPath + '/gears.gif" class="spinner" />';
         gameInstance.progress.style.display = 'none';
     }
     else
     {
-        gameInstance.textProgress.innerHTML = 'Loading - ' + Math.floor(progress * 100) + '%' + ' <img src="' + rootPath + '/gears.gif" class="spinner" />';
+        gameInstance.textProgress.innerHTML = 'Downloading resources... ' + Math.floor(progress * 100) + '%' + ' <img src="' + rootPath + '/gears.gif" class="spinner" />';
     }
 
     /*
     if (progress == 1) {
-        gameInstance.textProgress.innerHTML = 'Running, Please Wait.. <img src="' + rootPath + '/gears.gif" class="spinner" />';
+        gameInstance.textProgress.innerHTML = 'Please wait... <img src="' + rootPath + '/gears.gif" class="spinner" />';
         gameInstance.progress.style.display = 'none';
     }
     */
