@@ -1,2 +1,3 @@
 type=gitpage
 block=picture
+show=true
